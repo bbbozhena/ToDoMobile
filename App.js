@@ -1,20 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, View, FlatList, Text } from "react-native";
+import Header from "./components/header";
+import ListItem from "./components/listItem";
 
 export default function App() {
+  const [listOfItems, stListOfItems] = useState([
+    {
+      text: "Milk",
+      index: 1,
+    },
+    {
+      text: "Meat",
+      index: 2,
+    },
+    {
+      text: "Sugar",
+      index: 3,
+    },
+    {
+      text: "Chocolate",
+      index: 4,
+    },
+  ]);
+
   return (
-    <View style={styles.container}>
-      <Text>Misha cool!</Text>
-      <StatusBar style="auto" />
+    <View>
+      <Header />
+      <View>
+        <FlatList
+          data={listOfItems}
+          renderItem={({ item }) => <ListItem item={item}></ListItem>}
+        />
+      </View>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const styles = StyleSheet.create({});
